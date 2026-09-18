@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>เหล่ซ่า พาแซ่บ — ของกินซ่าๆ แวะเดียวก็ได้กิน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@500;600;700;800&family=Sarabun:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#1B120E;
+    --bg-raised:#251A13;
+    --chili:#C63D2F;
+    --chili-deep:#8F2A1F;
+    --gold:#E8A33D;
+    --pepper:#6B8F71;
+    --cream:#F3E9DC;
+    --cream-dim:#C9BBA9;
+    --line: rgba(243,233,220,0.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Sarabun', sans-serif;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .display{
+    font-family:'Kanit', sans-serif;
+    font-weight:800;
+    letter-spacing:0.2px;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+
+  /* motion respect */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(27,18,14,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    max-width:1120px; margin:0 auto;
+  }
+  .logo{display:flex; flex-direction:column; line-height:1.1;}
+  .logo .top{font-family:'Kanit'; font-weight:800; font-size:1.35rem; color:var(--cream);}
+  .logo .bottom{font-family:'Kanit'; font-weight:600; font-size:0.72rem; color:var(--chili); letter-spacing:1px;}
+  .navlinks{display:flex; gap:28px; font-size:0.95rem; color:var(--cream-dim);}
+  .navlinks a:hover{color:var(--gold);}
+  .cta-small{
+    background:var(--chili); color:var(--cream); font-family:'Kanit'; font-weight:600;
+    padding:9px 18px; border-radius:3px; font-size:0.92rem;
+    box-shadow: 3px 3px 0 var(--chili-deep);
+  }
+  .navtoggle{display:none;}
+  @media (max-width:760px){
+    .navlinks{display:none;}
+    .navtoggle{display:block; font-size:1.5rem; background:none; border:none; color:var(--cream);}
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    padding:90px 0 70px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.15fr 0.85fr; gap:40px; align-items:center;
+  }
+  .eyebrow-line{
+    color:var(--gold); font-family:'Kanit'; font-weight:600; font-size:0.95rem;
+    margin-bottom:14px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.4rem);
+    color:var(--cream);
+    line-height:1.05;
+  }
+  .hero h1 .accent{color:var(--chili);}
+  .hero p.lead{
+    margin-top:20px; font-size:1.15rem; color:var(--cream-dim); max-width:46ch;
+  }
+  .hero-ctas{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    font-family:'Kanit'; font-weight:600; font-size:1rem;
+    padding:14px 26px; border-radius:3px; display:inline-block;
+  }
+  .btn-primary{background:var(--gold); color:#1B120E; box-shadow:4px 4px 0 var(--chili-deep);}
+  .btn-primary:hover{transform:translate(-2px,-2px); box-shadow:6px 6px 0 var(--chili-deep);}
+  .btn-outline{border:1.5px solid var(--cream-dim); color:var(--cream);}
+  .btn-outline:hover{border-color:var(--gold); color:var(--gold);}
+  .btn{transition:all .15s ease;}
+
+  .hero-visual{position:relative; display:flex; justify-content:center;}
+  .steam-scene{width:100%; max-width:360px;}
+
+  /* subtle looping steam, single orchestrated motion */
+  .steam path{
+    animation: rise 4.5s ease-in-out infinite;
+    transform-origin:center bottom;
+  }
+  .steam path:nth-child(2){animation-delay:0.8s;}
+  .steam path:nth-child(3){animation-delay:1.6s;}
+  @keyframes rise{
+    0%{ transform:translateY(0) scaleY(1); opacity:0.55;}
+    50%{ transform:translateY(-14px) scaleY(1.08); opacity:0.9;}
+    100%{ transform:translateY(-28px) scaleY(1); opacity:0;}
+  }
+
+  .spice-strip{
+    display:flex; gap:10px; margin-top:36px; flex-wrap:wrap;
+  }
+  .spice-tag{
+    font-family:'Kanit'; font-size:0.82rem; font-weight:600;
+    border:1px solid var(--line); color:var(--cream-dim);
+    padding:6px 14px; border-radius:20px;
+  }
+
+  /* ===== SECTION HEAD ===== */
+  section{padding:80px 0;}
+  .sec-head{max-width:56ch; margin-bottom:44px;}
+  .sec-head h2{font-size:clamp(1.8rem,3.4vw,2.6rem); color:var(--cream);}
+  .sec-head p{margin-top:12px; color:var(--cream-dim); font-size:1.05rem;}
+
+  /* ===== MENU (order-slip cards) ===== */
+  #menu{background:var(--bg-raised); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .menu-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:22px;
+  }
+  @media (max-width:700px){.menu-grid{grid-template-columns:1fr;}}
+  .slip{
+    background:var(--bg);
+    border:1px solid var(--line);
+    padding:26px 26px 22px;
+    position:relative;
+  }
+  .slip::before{
+    content:"";
+    position:absolute; top:-1px; left:20px; right:20px; height:8px;
+    background:
+      radial-gradient(circle at 8px 0, transparent 6px, var(--bg-raised) 6.5px) top left/16px 8px repeat-x;
+  }
+  .slip-row{display:flex; justify-content:space-between; align-items:baseline; gap:12px;}
+  .slip h3{font-size:1.25rem; color:var(--cream);}
+  .price{font-family:'Kanit'; font-weight:700; color:var(--gold); white-space:nowrap;}
+  .slip p{color:var(--cream-dim); font-size:0.96rem; margin-top:8px;}
+  .chilis{display:flex; gap:4px; margin-top:14px;}
+  .chilis svg{width:16px; height:16px;}
+
+  /* ===== CONCEPT ===== */
+  .concept-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap:50px; align-items:center;
+  }
+  @media (max-width:760px){.concept-grid{grid-template-columns:1fr;}}
+  .stat-row{display:flex; gap:40px; margin-top:30px; flex-wrap:wrap;}
+  .stat .num{font-family:'Kanit'; font-weight:800; font-size:2.4rem; color:var(--chili);}
+  .stat .label{color:var(--cream-dim); font-size:0.9rem; margin-top:2px;}
+  .concept-art{
+    aspect-ratio:4/3; border:1px solid var(--line); background:var(--bg-raised);
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  }
+
+  /* ===== HOURS / LOCATION ===== */
+  #visit{background:var(--bg-raised); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px;}
+  @media (max-width:760px){.visit-grid{grid-template-columns:1fr;}}
+  .hours-table{width:100%; border-collapse:collapse; margin-top:18px;}
+  .hours-table td{padding:10px 0; border-bottom:1px solid var(--line); font-size:0.98rem;}
+  .hours-table td:first-child{color:var(--cream-dim);}
+  .hours-table td:last-child{text-align:right; font-family:'Kanit'; font-weight:600;}
+  .addr-box{border:1px solid var(--line); padding:24px; background:var(--bg);}
+  .addr-box h3{color:var(--gold); font-size:1.1rem; margin-bottom:10px;}
+  .addr-box p{color:var(--cream-dim);}
+
+  /* ===== FOOTER ===== */
+  footer{padding:50px 0 30px;}
+  .foot-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; border-top:1px solid var(--line); padding-top:30px;}
+  .foot-links{display:flex; gap:20px; font-size:0.92rem; color:var(--cream-dim);}
+  .foot-links a:hover{color:var(--gold);}
+  .copy{color:var(--cream-dim); font-size:0.85rem; margin-top:20px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      <span class="top">เหล่ซ่า</span>
+      <span class="bottom">พาแซ่บ</span>
+    </div>
+    <div class="navlinks">
+      <a href="#menu">เมนู</a>
+      <a href="#concept">เรื่องของเรา</a>
+      <a href="#visit">เวลา &amp; ที่ตั้ง</a>
+      <a href="#contact">ติดต่อ</a>
+    </div>
+    <a class="cta-small" href="#contact">สั่งแล้วแซ่บ</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow-line">ของกินซ่าๆ ร้อนๆ ไม่ต้องรอนาน</div>
+      <h1>แวะไว <span class="accent">ซ่า</span>ไว<br>อิ่มแล้วไปต่อ</h1>
+      <p class="lead">เหล่ซ่า พาแซ่บ ขายของกินรสจัดจ้าน ปิ้งย่างสไตล์มาล่า แวะซื้อระหว่างทาง ไม่ต้องนั่งรอเป็นชั่วโมง</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#menu">ดูเมนูซ่า</a>
+        <a class="btn btn-outline" href="#visit">ดูเวลาเปิด</a>
+      </div>
+      <div class="spice-strip">
+        <span class="spice-tag">🌶️ ปรับความซ่าได้</span>
+        <span class="spice-tag">🔥 ปิ้งสดหน้าร้าน</span>
+        <span class="spice-tag">🥡 แพ็คไปได้ ไม่มีที่นั่ง</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg class="steam-scene" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- grill plate -->
+        <ellipse cx="150" cy="230" rx="110" ry="18" fill="#0F0A07"/>
+        <rect x="60" y="150" width="180" height="70" rx="6" fill="#3A2A1E" stroke="#5c4530" stroke-width="2"/>
+        <g stroke="#241811" stroke-width="4">
+          <line x1="75" y1="160" x2="75" y2="210"/>
+          <line x1="100" y1="160" x2="100" y2="210"/>
+          <line x1="125" y1="160" x2="125" y2="210"/>
+          <line x1="150" y1="160" x2="150" y2="210"/>
+          <line x1="175" y1="160" x2="175" y2="210"/>
+          <line x1="200" y1="160" x2="200" y2="210"/>
+          <line x1="225" y1="160" x2="225" y2="210"/>
+        </g>
+        <!-- skewers -->
+        <g>
+          <rect x="70" y="140" width="60" height="14" rx="7" fill="#C63D2F"/>
+          <rect x="60" y="135" width="90" height="4" fill="#E8A33D"/>
+          <rect x="150" y="145" width="60" height="14" rx="7" fill="#8F2A1F"/>
+          <rect x="140" y="140" width="90" height="4" fill="#E8A33D"/>
+        </g>
+        <!-- steam -->
+        <g class="steam" fill="none" stroke="#F3E9DC" stroke-width="5" stroke-linecap="round" opacity="0.7">
+          <path d="M110 140 C 100 110, 125 100, 115 70"/>
+          <path d="M150 140 C 140 108, 165 96, 155 62"/>
+          <path d="M190 140 C 180 112, 202 100, 192 72"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>ซ่าที่ต้องลอง</h2>
+      <p>เมนูขายดีของร้าน ปรับความเผ็ดซ่าได้ตามคำสั่งลูกค้า ตั้งแต่ซ่านิดถึงซ่าสะเทือน</p>
+    </div>
+    <div class="menu-grid">
+
+      <div class="slip">
+        <div class="slip-row">
+          <h3>หมูปิ้งซ่ามาล่า</h3>
+          <span class="price">45.-</span>
+        </div>
+        <p>หมูคอหมักซอสมาล่าสูตรร้าน ปิ้งเตาถ่านจนหอมไหม้เกรียม เสิร์ฟพร้อมข้าวเหนียว</p>
+        <div class="chilis">
+          <span title="ซ่าปานกลาง">🌶️🌶️</span>
+        </div>
+      </div>
+
+      <div class="slip">
+        <div class="slip-row">
+          <h3>ปีกไก่ซ่าทะลุ</h3>
+          <span class="price">55.-</span>
+        </div>
+        <p>ปีกไก่ทอดกรอบคลุกซอสพริกซ่า โรยงาคั่ว กินคู่น้ำจิ้มบ๊วยดับซ่า</p>
+        <div class="chilis">
+          <span title="ซ่าเข้มข้น">🌶️🌶️🌶️</span>
+        </div>
+      </div>
+
+      <div class="slip">
+        <div class="slip-row">
+          <h3>เส้นลาบซ่าคั่ว</h3>
+          <span class="price">40.-</span>
+        </div>
+        <p>เส้นหมี่ลวกคลุกน้ำลาบรสจัด ใส่ข้าวคั่วหอมกรุ่น เผ็ดแบบอีสานแท้</p>
+        <div class="chilis">
+          <span title="ซ่าปานกลาง">🌶️🌶️</span>
+        </div>
+      </div>
+      <div class="slip">
+        <div class="slip-row">
+          <h3>ข้าวเหนียวมะม่วงดับซ่า</h3>
+          <span class="price">50.-</span>
+        </div>
+        <p>ของหวานปิดท้าย มะม่วงสุกหวานฉ่ำ ราดกะทิข้น กินแก้เผ็ดได้ดีที่สุด</p>
+        <div class="chilis">
+          <span title="ไม่เผ็ด">—</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="concept">
+  <div class="wrap concept-grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:0;">
+        <h2>ทำไมต้อง "พาแซ่บ"</h2>
+        <p>ทุกจานที่ออกจากเตาต้องผ่านมาตรฐานเดียว คือต้องแซ่บ ไม่ลดรสลดเผ็ดเพื่อความเร็ว หมักซอสเอง ปิ้งสดตามออเดอร์ กินแล้วต้องร้อง "แซ่บ" ออกมาโดยไม่ตั้งใจ</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div class="num">4</div>
+          <div class="label">ระดับความซ่าให้เลือก</div>
+        </div>
+        <div class="stat">
+          <div class="num">100%</div>
+          <div class="label">หมักซอสสูตรร้านเอง</div>
+        </div>
+        <div class="stat">
+          <div class="num">17:00</div>
+          <div class="label">เปิดเตาทุกเย็น</div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-art">
+      <svg viewBox="0 0 240 200" width="70%">
+        <circle cx="120" cy="100" r="70" fill="#241811" stroke="#6B8F71" stroke-width="2"/>
+        <path d="M90 105 q30 -50 60 0" fill="none" stroke="#E8A33D" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="90" cy="105" r="6" fill="#C63D2F"/>
+        <circle cx="150" cy="105" r="6" fill="#C63D2F"/>
+        <text x="120" y="140" text-anchor="middle" fill="#F3E9DC" font-family="Kanit" font-size="13" font-weight="600">แซ่บทุกคำ ทุกจาน</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="visit">
+  <div class="wrap visit-grid">
+    <div>
+      <div class="sec-head" style="margin-bottom:18px;">
+        <h2>เวลาเปิด-ปิด</h2>
+      </div>
+      <table class="hours-table">
+        <tr><td>จันทร์ – ศุกร์</td><td>17:00 – 22:00</td></tr>
+        <tr><td>เสาร์ – อาทิตย์</td><td>16:00 – 23:00</td></tr>
+        <tr><td>วันหยุดนักขัตฤกษ์</td><td>ปิด</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="sec-head" style="margin-bottom:18px;">
+        <h2>ที่ตั้ง</h2>
+      </div>
+      <div class="addr-box">
+        <h3>เหล่ซ่า พาแซ่บ</h3>
+        <p>ปากซอยหน้าตลาดสด ใกล้วินมอเตอร์ไซค์<br>
+        ที่จอดรถสะดวก แวะซื้อแล้วไปต่อได้เลย</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="logo">
+        <span class="top">เหล่ซ่า</span>
+        <span class="bottom">พาแซ่บ</span>
+      </div>
+      <div class="foot-links">
+        <a href="#">LINE: @laosa-pasaeb</a>
+        <a href="#">โทร 08X-XXX-XXXX</a>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+    <p class="copy">© 2026 เหล่ซ่า พาแซ่บ — ของกินซ่าๆ แวะเดียวก็ได้กิน</p>
+  </div>
+</footer>
+
+</body>
+</html>
